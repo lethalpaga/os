@@ -196,7 +196,16 @@ class OS
       end
     end
   end
-
+ 
+   def self.dev_stdout
+    @dev_null ||= begin
+      if OS.windows?
+        "CON"
+      else
+        "/dev/stdout"
+      end
+    end
+  end
   # provides easy way to see the relevant config entries
   def self.report
     relevant_keys = [
